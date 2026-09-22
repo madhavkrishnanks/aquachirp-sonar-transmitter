@@ -41,7 +41,7 @@ KESTREL proposes a **software-defined sonar transmitter payload** built around a
 
 The system continuously processes environmental inputs and selects an appropriate transmission strategy. The selected waveform is generated digitally, streamed through the DAC using hardware-timed data transfer, reconstructed through the analog signal chain, and validated using an oscilloscope.
 
-### Core Approach
+## Core Approach
 
 **Sense → Adapt → Synthesize → Convert → Filter → Validate**
 
@@ -58,7 +58,7 @@ The design is intended as a **modular transmitter payload**, allowing waveform-g
 
 The core innovation of KESTREL is the combination of **real-time environmental adaptation and software-defined waveform generation** within a compact embedded transmitter architecture.
 
-### What Makes the Approach Different
+## What Makes the Approach Different
 
 - **Environmental-aware transmission**  
   Transmission strategy can be selected according to changing environmental parameters rather than relying on a single fixed waveform.
