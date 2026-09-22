@@ -26,7 +26,7 @@ For an AUV operating in varying conditions, parameters such as depth, temperatur
 
 The SIH26058 problem calls for a **software-defined, low-power and real-time adaptive sonar transmitter payload** capable of generating configurable waveforms and adapting its transmission parameters according to environmental conditions.
 
-### Key Challenges
+## Key Challenges
 
 - Fixed transmission parameters may not be suitable for changing underwater conditions.
 - Different applications require different waveform characteristics.
