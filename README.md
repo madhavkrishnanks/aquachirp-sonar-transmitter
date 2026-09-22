@@ -11,6 +11,10 @@
 
 ### SIH26058 | Low-Power, Real-Time Adaptive Sonar Transmitter
 
+**Measured on Rigol DS1054Z**
+
+[([photo-collage.png.png](url))]
+
 A compact STM32-based software-defined sonar transmitter payload that adapts its transmitted waveform parameters using environmental inputs such as depth, temperature, turbidity, salinity, and resolution–penetration preference.
 
 > **Smart India Hackathon 2026 — Problem Statement SIH26058**  
