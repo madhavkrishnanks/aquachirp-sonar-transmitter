@@ -17,6 +17,10 @@
 | :---: | :---: | :---: |
 | <img width="260" alt="barker 13" src="https://github.com/user-attachments/assets/f8ebcaf2-d14b-4bde-b417-52c8f93ccc08" /> | <img width="260" alt="cw" src="https://github.com/user-attachments/assets/e0507b65-0fdb-4f71-9c58-35297c904baf" /> | <img width="260" alt="lfm chirp" src="https://github.com/user-attachments/assets/793cc427-37d6-4ed2-913a-4ecc7a9709ea" /> |
 
+| Embedded Core | DAC | Physical Validation | Mechanical Integration |
+|---|---|---|---|
+| STM32F103RBT6 | MCP4921 12-bit | Rigol DS1054Z | AUV 3D CAD |
+
 
 A compact STM32-based software-defined sonar transmitter payload that adapts its transmitted waveform parameters using environmental inputs such as depth, temperature, turbidity, salinity, and resolution–penetration preference.
 
