@@ -54,10 +54,6 @@ The system continuously processes environmental inputs and selects an appropriat
 
 The design is intended as a **modular transmitter payload**, allowing waveform-generation and environmental-adaptation logic to be modified through firmware without redesigning the complete hardware signal chain.
 
-## Key Innovation
-
-The core innovation of KESTREL is the combination of **real-time environmental adaptation and software-defined waveform generation** within a compact embedded transmitter architecture.
-
 ## What Makes the Approach Different
 
 - **Environmental-aware transmission**  
