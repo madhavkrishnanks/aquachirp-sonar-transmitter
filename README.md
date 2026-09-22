@@ -163,13 +163,14 @@ Oscilloscope Validation
 ## Experimental Validation
 
 ### CW
-["https://github.com/user-attachments/assets/e0507b65-0fdb-4f71-9c58-35297c904baf"]
+[cw dso image.jpeg]
 
 ### LFM Chirp
-["https://github.com/user-attachments/assets/793cc427-37d6-4ed2-913a-4ecc7a9709ea"]
+[lfm chirp dso image.jpeg]
 
 ### Barker 13 Test
-["https://github.com/user-attachments/assets/f8ebcaf2-d14b-4bde-b417-52c8f93ccc08"]
+[barker 13 dso image.jpeg]
+
 
 ### Power Measurement
 
