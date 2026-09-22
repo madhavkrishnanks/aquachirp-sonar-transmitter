@@ -13,7 +13,8 @@
 
 **Measured on Rigol DS1054Z**
 
-[([photo-collage.png.png](url))]
+<img width="1080" height="1080" alt="photo-collage png" src="https://github.com/user-attachments/assets/bbd5aa0b-8d61-4c93-9ec1-45ddf9647db2" />
+
 
 A compact STM32-based software-defined sonar transmitter payload that adapts its transmitted waveform parameters using environmental inputs such as depth, temperature, turbidity, salinity, and resolution–penetration preference.
 
