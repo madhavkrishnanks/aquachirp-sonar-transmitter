@@ -150,7 +150,7 @@ The KESTREL transmitter is organized as a modular embedded signal-generation pip
                 └─────────────────────┘
 
   ```           
-## System Architecture
+## Signal flow
 
 ```text
 Environmental Inputs
