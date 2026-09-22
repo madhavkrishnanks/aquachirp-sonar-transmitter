@@ -13,6 +13,30 @@
 
 A compact STM32-based software-defined sonar transmitter payload that adapts its transmitted waveform parameters using environmental inputs such as depth, temperature, turbidity, salinity, and resolution–penetration preference.
 
+> **Smart India Hackathon 2026 — Problem Statement SIH26058**  
+> **Team:** KESTREL  
+> **Team ID:** 127602  
+> **Institution:** SRM Institute of Science and Technology, Ramapuram
+
+## Problem Statement
+
+Conventional sonar transmitters are often designed around fixed transmission parameters, making them less flexible when underwater environmental conditions change.
+
+For an AUV operating in varying conditions, parameters such as depth, temperature, turbidity, salinity, and the required balance between resolution and penetration can influence the choice of transmission strategy.
+
+The SIH26058 problem calls for a **software-defined, low-power and real-time adaptive sonar transmitter payload** capable of generating configurable waveforms and adapting its transmission parameters according to environmental conditions.
+
+### Key Challenges
+
+- Fixed transmission parameters may not be suitable for changing underwater conditions.
+- Different applications require different waveform characteristics.
+- Waveform generation must be performed in real time on an embedded platform.
+- The transmitter must operate within power and hardware constraints.
+- The generated waveform requires electrical validation through measurement.
+- The complete electronics must be suitable for integration into an AUV payload.
+
+
+----------------------------------------------------------------------------------------------------------------
 
 **AquaChirp** is an autonomous, software-defined sonar (SDS) transmission and telemetry dashboard. It couples real-time physical ocean acoustics modeling (Mackenzie sound speed, Francois-Garrison chemical absorption) with STM32 embedded edge microcontrollers via the browser's native **WebSerial API** to dynamically synthesize optimized acoustic chirps, Barker codes, and windowed pulses in under **8 milliseconds**.
 
