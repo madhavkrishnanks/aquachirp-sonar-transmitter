@@ -39,15 +39,6 @@ For an AUV operating in varying conditions, parameters such as depth, temperatur
 
 The SIH26058 problem calls for a **software-defined, low-power and real-time adaptive sonar transmitter payload** capable of generating configurable waveforms and adapting its transmission parameters according to environmental conditions.
 
-## Key Challenges
-
-- Fixed transmission parameters may not be suitable for changing underwater conditions.
-- Different applications require different waveform characteristics.
-- Waveform generation must be performed in real time on an embedded platform.
-- The transmitter must operate within power and hardware constraints.
-- The generated waveform requires electrical validation through measurement.
-- The complete electronics must be suitable for integration into an AUV payload.
-
 ## Our Solution
 
 KESTREL proposes a **software-defined sonar transmitter payload** built around an STM32 microcontroller and a configurable analog signal chain.
@@ -67,27 +58,19 @@ The system continuously processes environmental inputs and selects an appropriat
 
 The design is intended as a **modular transmitter payload**, allowing waveform-generation and environmental-adaptation logic to be modified through firmware without redesigning the complete hardware signal chain.
 
-## What Makes the Approach Different
+## How KESTREL Addresses the PS
 
-- **Environmental-aware transmission**  
-  Transmission strategy can be selected according to changing environmental parameters rather than relying on a single fixed waveform.
-
-- **Software-defined waveform generation**  
-  Waveform characteristics are controlled through firmware, allowing different transmission strategies without changing the analog hardware.
-
-- **Multiple waveform modes**  
-  The platform supports configurable waveform generation including **CW, LFM chirp and phase-coded/Barker-based signals**.
-
-- **Hardware-timed data streaming**  
-  Timer-triggered DMA is used to stream waveform samples, reducing the need for continuous CPU intervention during sample transfer.
-
-- **Modular analog signal chain**  
-  An external 12-bit DAC, selectable filtering, buffering and signal-conditioning stages provide a configurable path from digital waveform generation to analog output.
-
-- **Measurement-driven validation**  
-  The generated electrical waveforms are validated using a digital oscilloscope in both time-domain and frequency-domain views.
-
-Together, these elements create a flexible transmitter platform in which the **transmission strategy is software-configurable while the underlying hardware remains reusable**.
+| PS Requirement | KESTREL Implementation |
+|---|---|
+| Software-defined transmitter | STM32-based firmware-controlled waveform generation |
+| Real-time adaptation | Environmental inputs drive transmission-strategy selection |
+| Multiple waveform types | CW, LFM chirp and phase-coded/Barker-based modes |
+| Low-power operation | Timer + DMA used for waveform sample streaming |
+| Digital waveform synthesis | Firmware-generated waveform samples |
+| Analog transmission chain | MCP4921 DAC → filtering → CD4053B → MCP6004 |
+| Real-time environmental inputs | Temperature, turbidity, salinity/TDS, depth and resolution–penetration preference |
+| Waveform validation | Rigol DS1054Z time-domain and FFT measurements |
+| AUV payload integration | Compact 3D-designed payload enclosure |
 
 ## System Architecture
 
@@ -176,6 +159,64 @@ Analog Output
 Oscilloscope Validation
   ``` 
 ---
+
+## Experimental Validation
+
+### CW
+["https://github.com/user-attachments/assets/e0507b65-0fdb-4f71-9c58-35297c904baf"]
+
+### LFM Chirp
+["https://github.com/user-attachments/assets/793cc427-37d6-4ed2-913a-4ecc7a9709ea"]
+
+### Barker 13 Test
+["https://github.com/user-attachments/assets/f8ebcaf2-d14b-4bde-b417-52c8f93ccc08"]
+
+### Power Measurement
+
+The transmitter signal chain was measured at 3.3 V using a digital multimeter
+connected in series with the supply.
+
+| Waveform Mode | Measured Power | Equivalent Current |
+|---|---:|---:|
+| CW | 8.25 mW | 2.50 mA |
+| LFM | 8.05 mW | 2.44 mA |
+| Barker-13 | 7.95 mW | 2.41 mA |
+
+[dmm high.png]
+
+Across the tested waveform modes, the measured signal-chain power remained
+within **7.95–8.25 mW**, corresponding to approximately **2.41–2.50 mA at
+3.3 V**.
+
+This indicates that changing the waveform mode does not introduce a large
+change in the measured signal-chain power.
+
+[power varada.png]
+
+> **Measurement scope:** These values represent the measured 3.3 V
+> transmitter signal-chain section and do not represent the total power
+> consumption of the complete development-board system.
+
+
+## AUV Mechanical Integration
+
+A 3D CAD enclosure was developed to explore the mechanical integration of the
+transmitter electronics into an AUV payload.
+
+![AUV Payload CAD]([Blue Underwater Vehicle Callout Diagram.png])
+
+### Design Highlights
+
+- Compact cylindrical AUV-compatible form factor
+- Internal electronics cavity
+- Removable service panel
+- Rear cable pass-through
+- Sensor mounting provisions
+- PCB / electronics mounting provisions
+
+The current CAD represents a **prototype mechanical integration concept** and
+is not claimed as a pressure-rated underwater housing.
+
 
 ## 🚀 Getting Started
 
