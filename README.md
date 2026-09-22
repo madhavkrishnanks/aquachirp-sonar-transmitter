@@ -11,6 +11,8 @@
 
 ### SIH26058 | Low-Power, Real-Time Adaptive Sonar Transmitter
 
+### Hardware & Prototype Snapshot
+
 **Measured on Rigol DS1054Z**
 
 | Barker 13 | CW Signal | LFM Chirp |
