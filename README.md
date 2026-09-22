@@ -143,6 +143,7 @@ The KESTREL transmitter is organized as a modular embedded signal-generation pip
   ```           
 ## System Architecture
 
+```text
 Environmental Inputs
         ↓
 STM32 Data Acquisition
@@ -164,6 +165,7 @@ MCP6004 Buffer
 Analog Output
         ↓
 Oscilloscope Validation
+  ``` 
 ---
 
 ## 🚀 Getting Started
