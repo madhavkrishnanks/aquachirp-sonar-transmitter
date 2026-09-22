@@ -35,7 +35,114 @@ The SIH26058 problem calls for a **software-defined, low-power and real-time ada
 - The generated waveform requires electrical validation through measurement.
 - The complete electronics must be suitable for integration into an AUV payload.
 
+## Our Solution
 
+KESTREL proposes a **software-defined sonar transmitter payload** built around an STM32 microcontroller and a configurable analog signal chain.
+
+The system continuously processes environmental inputs and selects an appropriate transmission strategy. The selected waveform is generated digitally, streamed through the DAC using hardware-timed data transfer, reconstructed through the analog signal chain, and validated using an oscilloscope.
+
+### Core Approach
+
+**Sense → Adapt → Synthesize → Convert → Filter → Validate**
+
+1. **Sense** — Acquire environmental parameters such as depth, temperature, turbidity and salinity.
+2. **Adapt** — Determine the transmission strategy based on the current environmental conditions and resolution–penetration preference.
+3. **Synthesize** — Generate the required waveform digitally using firmware.
+4. **Convert** — Convert the digital samples into an analog signal using the MCP4921 DAC.
+5. **Filter & Buffer** — Reconstruct and condition the waveform through the analog filter, CD4053B switching stage and MCP6004 buffer.
+6. **Validate** — Observe the electrical output in the time domain and frequency domain using a digital oscilloscope.
+
+The design is intended as a **modular transmitter payload**, allowing waveform-generation and environmental-adaptation logic to be modified through firmware without redesigning the complete hardware signal chain.
+
+## Key Innovation
+
+The core innovation of KESTREL is the combination of **real-time environmental adaptation and software-defined waveform generation** within a compact embedded transmitter architecture.
+
+### What Makes the Approach Different
+
+- **Environmental-aware transmission**  
+  Transmission strategy can be selected according to changing environmental parameters rather than relying on a single fixed waveform.
+
+- **Software-defined waveform generation**  
+  Waveform characteristics are controlled through firmware, allowing different transmission strategies without changing the analog hardware.
+
+- **Multiple waveform modes**  
+  The platform supports configurable waveform generation including **CW, LFM chirp and phase-coded/Barker-based signals**.
+
+- **Hardware-timed data streaming**  
+  Timer-triggered DMA is used to stream waveform samples, reducing the need for continuous CPU intervention during sample transfer.
+
+- **Modular analog signal chain**  
+  An external 12-bit DAC, selectable filtering, buffering and signal-conditioning stages provide a configurable path from digital waveform generation to analog output.
+
+- **Measurement-driven validation**  
+  The generated electrical waveforms are validated using a digital oscilloscope in both time-domain and frequency-domain views.
+
+Together, these elements create a flexible transmitter platform in which the **transmission strategy is software-configurable while the underlying hardware remains reusable**.
+
+## System Architecture
+
+The KESTREL transmitter is organized as a modular embedded signal-generation pipeline.
+
+```text
+                 ENVIRONMENTAL INPUTS
+        ┌─────────────────────────────────────┐
+        │ Depth                               │
+        │ Temperature                         │
+        │ Turbidity                           │
+        │ Salinity / TDS                     │
+        │ Resolution–Penetration Preference  │
+        └──────────────────┬──────────────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   STM32F103RBT6     │
+                │                     │
+                │ Sensor Acquisition  │
+                │ Adaptive Logic      │
+                │ Waveform Generation │
+                └──────────┬──────────┘
+                           │
+                    SPI + Timer + DMA
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   MCP4921 DAC       │
+                │      12-bit         │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │ Reconstruction /    │
+                │ RC Filtering        │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │    CD4053B          │
+                │ Filter Selection    │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │    MCP6004          │
+                │ Buffer / Conditioning│
+                └──────────┬──────────┘
+                           │
+                           ▼
+                    ANALOG OUTPUT
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   Digital Storage   │
+                │   Oscilloscope      │
+                │                     │
+                │ Time Domain + FFT   │
+                └─────────────────────┘
+
+
+
+                
 ----------------------------------------------------------------------------------------------------------------
 
 **AquaChirp** is an autonomous, software-defined sonar (SDS) transmission and telemetry dashboard. It couples real-time physical ocean acoustics modeling (Mackenzie sound speed, Francois-Garrison chemical absorption) with STM32 embedded edge microcontrollers via the browser's native **WebSerial API** to dynamically synthesize optimized acoustic chirps, Barker codes, and windowed pulses in under **8 milliseconds**.
