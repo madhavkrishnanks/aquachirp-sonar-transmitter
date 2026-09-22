@@ -7,6 +7,13 @@
 [![WebSerial](https://img.shields.io/badge/Protocol-WebSerial_API-0284C7?logo=googlechrome&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 
+# KESTREL — Adaptive Software-Defined Sonar Transmitter Payload for AUVs
+
+### SIH26058 | Low-Power, Real-Time Adaptive Sonar Transmitter
+
+A compact STM32-based software-defined sonar transmitter payload that adapts its transmitted waveform parameters using environmental inputs such as depth, temperature, turbidity, salinity, and resolution–penetration preference.
+
+
 **AquaChirp** is an autonomous, software-defined sonar (SDS) transmission and telemetry dashboard. It couples real-time physical ocean acoustics modeling (Mackenzie sound speed, Francois-Garrison chemical absorption) with STM32 embedded edge microcontrollers via the browser's native **WebSerial API** to dynamically synthesize optimized acoustic chirps, Barker codes, and windowed pulses in under **8 milliseconds**.
 
 ---
